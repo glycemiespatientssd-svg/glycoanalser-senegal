@@ -37,21 +37,36 @@ def verifier_licence(email, password):
         return False, f"❌ Erreur de vérification: {str(e)}"
 
 def charger_licences():
+    """
+    Charge les licences - version simplifiée avec seul médecin test
+    """
     try:
-        # Lire depuis l'URL GitHub raw
-        url = "https://raw.githubusercontent.com/votre-username/glycoanalyzer-senegal/main/licences.csv"
-        return pd.read_csv(url, parse_dates=['date_creation', 'date_expiration'])
-    except:
-        try:
-            # Fallback local
-            return pd.read_csv('licences.csv', parse_dates=['date_creation', 'date_expiration'])
-        except:
-            # Structure par défaut
-            return pd.DataFrame(columns=[
-                'email', 'password', 'nom_medecin', 'structure', 
-                'type_licence', 'date_creation', 'date_expiration',
-                'photos_restantes', 'statut'
-            ])
+        # UNIQUEMENT le médecin test
+        data = {
+            'email': ['test@medecin.com'],
+            'password': ['TEST@SD2025#'],
+            'nom_medecin': ['Dr. Test Médecin'],
+            'structure': ['Centre de Santé Test'],
+            'type_licence': ['Découverte'],
+            'date_creation': ['2024-12-20'],
+            'date_expiration': ['2025-06-20'],
+            'photos_restantes': [50],
+            'statut': ['active']
+        }
+        
+        df = pd.DataFrame(data)
+        df['date_creation'] = pd.to_datetime(df['date_creation'])
+        df['date_expiration'] = pd.to_datetime(df['date_expiration'])
+        
+        return df
+        
+    except Exception as e:
+        # Retourner un DataFrame vide en cas d'erreur
+        return pd.DataFrame(columns=[
+            'email', 'password', 'nom_medecin', 'structure', 
+            'type_licence', 'date_creation', 'date_expiration',
+            'photos_restantes', 'statut'
+        ])
 
 def decrementer_photos(email):
     # Dans cette version cloud, on ne peut pas modifier le CSV distant
