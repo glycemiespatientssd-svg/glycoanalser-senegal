@@ -1,0 +1,4 @@
+email,password,nom_medecin,structure,type_licence,date_creation,date_expiration,photos_restantes,statut
+dr.diallo@mail.com,DRDIALLO@SD2025#,Dr. Mamadou Diallo,Poste de santé Santé,Découverte,2024-12-20,2025-06-20,50,active
+dr.ndiaye@clinique.com,DRNDIAYE@SD2025#,Dr. Awa Ndiaye,Clinique Excellence,Standard,2024-12-20,2025-06-20,100,active
+test@medecin.com,TEST@SD2025#,Dr. Test Médecin,Centre de santé,Structure,2024-12-20,2025-12-20,200,active
